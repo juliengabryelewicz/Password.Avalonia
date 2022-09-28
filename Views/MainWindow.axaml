@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Password.Avalonia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Password.Avalonia.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Password.Avalonia"
+        Width="600"
+        Height="200">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid ColumnDefinitions="250,3*" RowDefinitions="Auto,Auto,Auto,Auto,Auto"  Margin="4">
+        <CheckBox IsChecked="{Binding MinCharacters}" Grid.Row="0" Grid.Column="0" Content="Avec minuscules" />
+        <CheckBox IsChecked="{Binding MajCharacters}" Grid.Row="1" Grid.Column="0" Content="Avec majuscules" />
+        <CheckBox IsChecked="{Binding NumCharacters}" Grid.Row="2" Grid.Column="0" Content="Avec des chiffres" />
+        <CheckBox IsChecked="{Binding SpeCharacters}" Grid.Row="3" Grid.Column="0" Content="Avec des caractères spéciaux" />
+        <Slider Value="{Binding PasswordLength}" Minimum="6" Maximum="100" TickFrequency="1" Width="300" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <TextBlock Grid.Row="2" Grid.Column="2">Votre mot de passe:</TextBlock>
+        <TextBox Text="{Binding PasswordGenerated}" Grid.Row="3" Grid.Column="2" />
+        <Button Command="{Binding GeneratePassword}" Grid.Row="4" Grid.Column="2">Générer</Button>
+    </Grid>
+</Window>
